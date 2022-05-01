@@ -1,3 +1,11 @@
 * [lang^=en] {
   color: green;
 }
+
+footer {
+  margin-top: 200px;
+  bottom:0;
+  width:100%;
+  height:50px;   /* Height of the footer */
+  text-align: center;
+}
