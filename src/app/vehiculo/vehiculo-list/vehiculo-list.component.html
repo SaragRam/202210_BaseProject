@@ -31,4 +31,10 @@
     </table>
 </div>
 
+<div class="container-fluid mt-4">
+  <div *ngFor="let vehiculo of sumaVehiculos | keyvalue">
+    Total {{vehiculo.key}}: {{vehiculo.value}}
+  </div>
+</div>
+
 

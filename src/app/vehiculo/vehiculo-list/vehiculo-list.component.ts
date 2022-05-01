@@ -10,16 +10,34 @@ import { VehiculoService } from '../vehiculo.service';
 export class VehiculoListComponent implements OnInit {
 
   vehiculos: Array<Vehiculo> = [];
-  constructor(private vehiculService: VehiculoService) { }
+  public sumaVehiculos = new Map<String, Number>();
+
+  constructor(private vehiculoService: VehiculoService) { }
 
   getVehiculos(): void {
-    this.vehiculService.getVehiculos().subscribe((vehiculos) => {
+    this.vehiculoService.getVehiculos().subscribe((vehiculos) => {
       this.vehiculos = vehiculos;
+    });
+  }
+
+  getSumaVehiculos(): void {
+    this.vehiculoService.getVehiculos().subscribe((vehiculos) => {
+      this.vehiculos = vehiculos;
+      this.vehiculos.forEach((v) => {
+
+        if(this.sumaVehiculos.has(v.marca)){
+          var obtenerSuma = Number(this.sumaVehiculos.get(v.marca));
+          this.sumaVehiculos.set(v.marca, obtenerSuma+1 );
+        }else{
+          this.sumaVehiculos.set(v.marca, 1)
+        }
+      })
     });
   }
 
   ngOnInit() {
     this.getVehiculos();
+    this.getSumaVehiculos();
   }
 
 }
